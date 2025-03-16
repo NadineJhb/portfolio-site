@@ -8,10 +8,12 @@
             box-sizing: border-box
         }
 
+        html,
         body {
             font-family: Verdana, sans-serif;
             margin: 0;
             background-color: rgb(24, 23, 23);
+            height: 100%;
         }
 
         .mySlides {
@@ -24,12 +26,27 @@
 
         /* Slideshow container */
         .slideshow-container {
-            max-width: 1000px;
+            height: 100vh;
             position: relative;
             margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slideshow-container img {
+            height: 100vh;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+
         }
 
         /* Next & previous buttons */
+        .arrows {
+            width: 100vh;
+        }
+
         .prev,
         .next {
             cursor: pointer;
@@ -70,6 +87,14 @@
         }
 
         /* The dots/bullets/indicators */
+        .dot-container {
+            position: absolute;
+            bottom: 5vh;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
         .dot {
             cursor: pointer;
             height: 15px;
@@ -181,14 +206,13 @@
         <div class="mySlides fade">
             <img src="img/Portfolio_202519.jpg" style="width:100%">
         </div>
-
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
+    </div>
+    <div class="arrows"> <a class="prev" onclick="plusSlides(-1)">❮</a>
         <a class="next" onclick="plusSlides(1)">❯</a>
-
     </div>
     <br>
 
-    <div style="text-align:center">
+    <div class="dot-container" style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
@@ -235,23 +259,23 @@
             dots[slideIndex - 1].className += " active";
         }
 
-        
+
         document.addEventListener("keydown", function (event) {
-                if (event.defaultPrevented) {
-                    return;
-                }
-                console.log(event.key)
-                switch (event.key) {
-                    case "ArrowRight": plusSlides(1);
-                        console.log(slideIndex);
-                        break;
-                    case "ArrowLeft": plusSlides(-1);
-                        console.log(slideIndex);
-                        break;
-                    default: return;
-                }
-                event.preventDefault;
-            }, true);
+            if (event.defaultPrevented) {
+                return;
+            }
+            console.log(event.key)
+            switch (event.key) {
+                case "ArrowRight": plusSlides(1);
+                    console.log(slideIndex);
+                    break;
+                case "ArrowLeft": plusSlides(-1);
+                    console.log(slideIndex);
+                    break;
+                default: return;
+            }
+            event.preventDefault;
+        }, true);
     </script>
 
 </body>
