@@ -128,7 +128,7 @@
         }
 
         /* On smaller screens, decrease text size */
-        @media only screen and (max-width: 400px) {
+        @media only screen and (max-width: 500px) {
 
             .prev,
             .next,
@@ -212,7 +212,9 @@
             <img src="img/Portfolio_202519.jpg" style="width:100%">
         </div>
     </div>
-    <div class="arrows"> <a class="prev" onclick="plusSlides(-1)">❮</a>
+
+    <div class="arrows">
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
         <a class="next" onclick="plusSlides(1)">❯</a>
     </div>
     <br>
@@ -272,15 +274,44 @@
             console.log(event.key)
             switch (event.key) {
                 case "ArrowRight": plusSlides(1);
-                    console.log(slideIndex);
                     break;
                 case "ArrowLeft": plusSlides(-1);
-                    console.log(slideIndex);
                     break;
                 default: return;
             }
             event.preventDefault;
         }, true);
+
+
+        document.addEventListener("click", handleEvent);
+        document.addEventListener("touchstart", handleEvent);
+
+        function handleEvent(event) {
+            let x;
+
+            // Check if it's a touch event
+            if (event.touches) {
+                x = event.touches[0].clientX; // Get X position of first touch
+            } else {
+                x = event.clientX; // Get X position of click
+            }
+
+            const screenWidth = window.innerWidth;
+
+            if (x < screenWidth / 2) {
+                leftSideAction();
+            } else {
+                rightSideAction();
+            }
+        }
+
+        function leftSideAction() {
+            plusSlides(-1);
+        }
+
+        function rightSideAction() {
+            plusSlides(1);
+        }
     </script>
 
 </body>
